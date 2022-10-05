@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Services\Cities;
+namespace App\Services\Cities\OpenWeatherMap;
 
 use App\Helpers\ApiHelpers;
+use App\Services\Cities\Interfaces\GetCityLocationInterface;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
-class GetCityLocationService
+class GetCityLocationService implements GetCityLocationInterface
 {
     /**
      * @param string $cityName
