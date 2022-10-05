@@ -2,10 +2,29 @@
     <?php
 
     use Illuminate\Support\Facades\Http;
+    use Illuminate\Support\Facades\URL;
 
     echo "<pre><div style='margin: 1em;'><h1>Josef Testing Page</h1>";
 
-    $url = config('open_weather.geocoding-endpoint') . '?q=London&limit=5&appid=' . config('open_weather.key');
+    $url = '';
+    $appUrl = URL::to('/');
+    $apiDomain = "$appUrl/api";
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    //// USER
+
+    //    $url = "$apiDomain/user";
+    //    $response = Http::get($url);
+    ////    echo $url;
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    //// CITIES
+
+    $cityName = 'London';
+    $url = "$apiDomain/search/$cityName";
     $response = Http::get($url);
 
 
@@ -25,7 +44,7 @@
             echo '<h4>class=' . get_class($response) . '</h4>';
 
             if (($class = get_class($response)) == 'Illuminate\Http\Client\Response') {
-                echo '<h5>body=' . $response->body() . '</h5>';
+//                echo '<h5>body=' . $response->body() . '</h5>';
                 var_dump($data = $response->json());
             } elseif ($class == 'Illuminate\Http\JsonResponse') {
                 var_dump($data = $response->getData(true));
