@@ -20,6 +20,7 @@ class CreateCitiesTable extends Migration
             $table->id();
             $table->string('city');
             $table->string('country');
+            $table->string('state');
             $table->double('latitude');
             $table->double('longitude');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

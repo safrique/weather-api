@@ -14,6 +14,7 @@ class City extends Model
     protected $fillable = [
         'city',
         'country',
+        'state',
         'latitude',
         'longitude',
     ];
