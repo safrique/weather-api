@@ -22,6 +22,6 @@ class CitiesController extends Controller
 
     public function store(Request $request, StoreCityService $service)
     {
-        return $service->store($request->only(City::getFillable()));
+        return $service->store($request->only(app()->make(City::class)->getFillable()));
     }
 }

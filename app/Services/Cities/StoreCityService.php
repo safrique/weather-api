@@ -26,11 +26,10 @@ class StoreCityService
      * @param array $data
      *
      * @return array|string
-     * @throws BindingResolutionException
      */
     private function validate(array $data)
     {
-        foreach (City::getFillable() as $item) {
+        foreach (app()->make(City::class)->getFillable() as $item) {
             if (empty($data[$item])) {
                 return "Missing required $item parameter";
             }

@@ -23,9 +23,19 @@
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     //// CITIES
 
-    $cityName = 'London';
-    $url = "$apiDomain/search/$cityName";
-    $response = Http::get($url);
+    //    $cityName = 'London';
+    //    $url = "$apiDomain/search/$cityName";
+    //    $response = Http::get($url);
+    $response = app()->make(\App\Services\Cities\GetCitiesService::class)->get();
+
+    //    $data = [
+    //        'city'=>'Test city2',
+    //        'country'=>'TC2',
+    //        'latitude'=>'456',
+    //        'longitude'=>'789',
+    //    ];
+    //    var_dump($data);
+    //    $response = app()->make(\App\Services\Cities\StoreCityService::class)->store($data);
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
