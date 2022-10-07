@@ -9,24 +9,17 @@
     $url = '';
     $appUrl = URL::to('/');
     $apiDomain = "$appUrl/api";
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
-    //// USER
-
-    //    $url = "$apiDomain/user";
-    //    $response = Http::get($url);
-    ////    echo $url;
+    //    echo $apiDomain;
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     //// CITIES
 
-    //    $cityName = 'London';
-    //    $url = "$apiDomain/search/$cityName";
-    //    $response = Http::get($url);
-    $response = app()->make(\App\Services\Cities\GetCitiesService::class)->get();
+    //    //    $cityName = 'London';
+    //    //    $url = "$apiDomain/search/$cityName";
+    //    //    $response = Http::get($url);
+    //    $response = app()->make(\App\Services\Cities\GetCitiesService::class)->get('Test city');
 
     //    $data = [
     //        'city'=>'Test city2',
@@ -36,6 +29,14 @@
     //    ];
     //    var_dump($data);
     //    $response = app()->make(\App\Services\Cities\StoreCityService::class)->store($data);
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    //// OPEN WEATHER MAP
+
+//    $response = app()->make(\App\Services\Cities\Interfaces\GetCityLocationInterface::class)->get('London');
+    $response = app()->make(\App\Services\Cities\OpenWeatherMap\GetCityLocationService::class)->get('London');
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -32,7 +32,7 @@ class GetCityLocationService implements GetCityLocationInterface
     private function getCityDetails(array $cities)
     : array {
         foreach ($cities as $city) {
-            $cities[] = [
+            $returnCities[] = [
                 'name'      => $city['name'],
                 'latitude'  => $city['lat'],
                 'longitude' => $city['lon'],
@@ -41,6 +41,6 @@ class GetCityLocationService implements GetCityLocationInterface
             ];
         }
 
-        return $cities;
+        return $returnCities ?? [];
     }
 }

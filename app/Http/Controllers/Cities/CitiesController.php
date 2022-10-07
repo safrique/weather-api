@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Cities;
 
 use App\Http\Controllers\Controller;
 use App\Models\City;
+use App\Services\Cities\DeleteCityService;
 use App\Services\Cities\GetCitiesService;
 use App\Services\Cities\Interfaces\GetCityLocationInterface;
 use App\Services\Cities\StoreCityService;
@@ -23,5 +24,10 @@ class CitiesController extends Controller
     public function store(Request $request, StoreCityService $service)
     {
         return $service->store($request->only(app()->make(City::class)->getFillable()));
+    }
+
+    public function delete(string $cityName, DeleteCityService $service)
+    {
+        return $service->delete($cityName);
     }
 }
