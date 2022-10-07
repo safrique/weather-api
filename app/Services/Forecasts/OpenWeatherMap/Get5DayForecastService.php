@@ -20,7 +20,12 @@ class Get5DayForecastService implements Get5DayForecastInterface
      */
     public function get(?string $cityName = null)
     {
-        return ($cities = $this->getCitiesService->get($cityName)) ? $this->getForecast($cities) : 'No city data found';
+        if (!($cities = $this->getCitiesService->get($cityName))) {
+            return 'No city data found';
+        }
+
+        $forecast = $this->getForecast($cities);
+        return $this->cleanForecast($forecast);
     }
 
     private function getForecast(array $cities)
@@ -36,5 +41,31 @@ class Get5DayForecastService implements Get5DayForecastInterface
         }
 
         return $forecastData ?? [];
+    }
+
+    private function cleanForecast(array $forecasts)
+    : array {
+        foreach ($forecasts as $forecast) {
+            $thisForecast = [
+                'city'    => $forecast['city']['name'],
+                'country' => $forecast['city']['country'],
+            ];
+
+            foreach ($forecast['list'] as $item) {
+                $thisForecast['forecast'][] = [
+                    'date_time'      => $item['dt_txt'],
+                    'temp'           => $item['main']['temp'],
+                    'feels_like'     => $item['main']['feels_like'],
+                    'weather'        => $item['weather'][0]['main'],
+                    'description'    => $item['weather'][0]['description'],
+                    'wind_speed'     => $item['wind']['speed'],
+                    'wind_direction' => $item['wind']['deg'],
+                ];
+            }
+
+            $returnForecasts[] = $thisForecast;
+        }
+
+        return $returnForecasts ?? [];
     }
 }
