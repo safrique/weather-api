@@ -4,7 +4,7 @@ namespace App\Services\Forecasts\OpenWeatherMap;
 
 use App\Helpers\ApiHelpers;
 use App\Services\Cities\GetCitiesService;
-use App\Services\Forecasts\Interfaces\Get5DayForecastInterface;
+use App\Services\Forecasts\OpenWeatherMap\Interfaces\Get5DayForecastInterface;
 use Illuminate\Support\Facades\Http;
 
 class Get5DayForecastService implements Get5DayForecastInterface
@@ -20,7 +20,7 @@ class Get5DayForecastService implements Get5DayForecastInterface
      */
     public function get(?string $cityName = null)
     {
-        return ($cities = $this->getCitiesService->get($cityName)) ? $this->getForecast($cities) : 'No cities found';
+        return ($cities = $this->getCitiesService->get($cityName)) ? $this->getForecast($cities) : 'No city data found';
     }
 
     private function getForecast(array $cities)

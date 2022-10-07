@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Forecasts\Interfaces;
+namespace App\Services\Forecasts\OpenWeatherMap\Interfaces;
 
 interface Get5DayForecastInterface
 {

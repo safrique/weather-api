@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\Forecasts\OpenWeatherMap\Get5DayForecastService;
+use App\Services\Forecasts\OpenWeatherMap\Interfaces\Get5DayForecastInterface;
 use Illuminate\Support\ServiceProvider;
 
 class ForecastServiceProvider extends ServiceProvider
@@ -23,9 +25,6 @@ class ForecastServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind(
-            'App\Services\Forecasts\Interfaces\Get5DayForecastInterface',
-            'App\Services\Forecasts\OpenWeatherMap\Get5DayForecastService'
-        );
+        $this->app->bind(Get5DayForecastInterface::class, Get5DayForecastService::class);
     }
 }

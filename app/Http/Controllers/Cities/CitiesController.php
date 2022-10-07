@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Cities;
 
 use App\Http\Controllers\Controller;
 use App\Models\City;
-use App\Services\Cities\DeleteCityService;
-use App\Services\Cities\GetCitiesService;
-use App\Services\Cities\Interfaces\GetCityLocationInterface;
+use App\Services\Cities\Interfaces\DeleteCityInterface;
+use App\Services\Cities\Interfaces\GetCitiesInterface;
+use App\Services\Cities\OpenWeatherMap\Interfaces\GetCityLocationInterface;
 use App\Services\Cities\StoreCityService;
 use Illuminate\Http\Request;
 
@@ -19,14 +19,14 @@ class CitiesController extends Controller
         return $service->get($cityName, $limit);
     }
 
-    public function get(?string $cityName = null, GetCitiesService $service) { return $service->get($cityName); }
+    public function get(?string $cityName = null, GetCitiesInterface $service) { return $service->get($cityName); }
 
-    public function store(Request $request, StoreCityService $service)
+    public function store(Request $request, StoreCityService $service, City $city)
     {
-        return $service->store($request->only(app()->make(City::class)->getFillable()));
+        return $service->store($request->only($city->getFillable()));
     }
 
-    public function delete(string $cityName, DeleteCityService $service)
+    public function delete(string $cityName, DeleteCityInterface $service)
     {
         return $service->delete($cityName);
     }

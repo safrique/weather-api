@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Cities\Interfaces;
+namespace App\Services\Cities\OpenWeatherMap\Interfaces;
 
 interface GetCityLocationInterface
 {

@@ -3,11 +3,20 @@
 namespace App\Services\Cities;
 
 use App\Models\City;
+use App\Services\Cities\Interfaces\StoreCityInterface;
 use Exception;
-use Illuminate\Contracts\Container\BindingResolutionException;
 
-class StoreCityService
+class StoreCityService implements StoreCityInterface
 {
+    private array $cityFillable;
+    private City $city;
+
+    public function __construct(City $city)
+    {
+        $this->city = $city;
+        $this->cityFillable = $this->city->getFillable();
+    }
+
     /**
      * @param array $data
      *
@@ -29,7 +38,7 @@ class StoreCityService
      */
     private function validate(array $data)
     {
-        foreach (app()->make(City::class)->getFillable() as $item) {
+        foreach ($this->cityFillable as $item) {
             if (empty($data[$item])) {
                 return "Missing required $item parameter";
             }
