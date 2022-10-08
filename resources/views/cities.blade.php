@@ -8,6 +8,11 @@
 </head>
 <body>
 <h3>Cities</h3>
+
+@if(!empty($error))
+    <h4 style="color: red">{{ $error }}</h4>
+@endif
+
 <table>
     <thead>
     <tr>
@@ -23,7 +28,7 @@
     @foreach($cities as $city)
         <tr>
             @if(!empty($add))
-                <form action="/cities/store" method="post" class="form-group" style="width:70%; margin-left:15%;">
+                <form action="/cities/store" method="post" class="form-group" style="width:70%;">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                     @foreach(@$city as $key => $value)
                         <td>
