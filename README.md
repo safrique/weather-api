@@ -9,7 +9,7 @@
 1. Fork the repository from https://github.com/safrique/weather-api.
 2. Contact me to get a copy of the .env file.
 3. Create a database on your local MySQL database setup and call it weather-api
-4. Create a user on this new database named root, and make the password the same as on the .env file. Alternativey 
+4. Create a user on this new database named root, and make the password the same as on the .env file. Alternatively 
    uou can use a user you've already set up on your local database, but remember to change the DB_USERNAME & 
    DB_PASSWORD on the .env file.
 5. From inside the new repo folder, run the following commands to set up the projects dependencies, set up the caching 
@@ -31,4 +31,16 @@
     php artisan serve
 7. In a browser window, go to http://127.0.0.1:8000/ or http://localhost:8000/ to go to the welcome page.
 8. Use the menu at the top of the page to navigate around the site.
-9. Use the buttons on the pages
+9. Use the buttons on the pages to use the functionality:
+   1. Cities:
+      1. Get individual city weather forecast
+      2. Delete city from the database
+      3. Get all cities forecasts
+   2. Search City:
+      1. Search a city's location
+      2. Once a list of found cities is displayed, they can be added to the database
+   3. Forecasts: List the weather forecasts of all the cities on the database
+
+### Console Commands
+
+### Automated Tests
