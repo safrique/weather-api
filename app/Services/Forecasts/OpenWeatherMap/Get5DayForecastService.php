@@ -32,7 +32,7 @@ class Get5DayForecastService implements Get5DayForecastInterface
     : array {
         foreach ($cities as $city) {
             $url = config('open_weather.forecast-endpoint') . '?lat=' . $city['latitude'] . '&lon=' . $city['longitude']
-                   . '&appid=' . config('open_weather.key');
+                   . '&units=imperial&appid=' . config('open_weather.key');
             $response = Http::get($url);
 
             if (ApiHelpers::isSuccessCode($response->status())) {
@@ -49,6 +49,8 @@ class Get5DayForecastService implements Get5DayForecastInterface
             $thisForecast = [
                 'city'    => $forecast['city']['name'],
                 'country' => $forecast['city']['country'],
+                'sunrise' => $forecast['city']['sunrise'],
+                'sunset' => $forecast['city']['sunset'],
             ];
 
             foreach ($forecast['list'] as $item) {

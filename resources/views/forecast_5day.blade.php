@@ -18,14 +18,32 @@
         @foreach($forecasts as $forecast)
             <h4>{{ $forecast['city'] }} ({{ $forecast['country'] }})</h4>
 
-            @foreach($forecast['forecast'] as $item)
-                <b>Timestamp:</b> {{ $item['date_time'] }}
-                - <b>Temp:</b> {{ $item['temp'] }}
-                - <b>Feels like:</b> {{ $item['feels_like'] }}
-                - <b>Conditions:</b> {{ $item['weather'] }} ({{ $item['description'] }})
-                - <b>Wind speed:</b> {{ $item['wind_speed'] }}
-                - <b>Direction:</b> {{ $item['wind_direction'] }} degrees<br>
-            @endforeach
+            <table>
+                <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Temp</th>
+                    <th>Feels like</th>
+                    <th>Conditions</th>
+                    <th>Wind speed</th>
+                    <th>Direction</th>
+                    <th>Sunrise</th>
+                    <th>Sunset</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($forecast['forecast'] as $item)
+                    <tr>
+                        <td> {{ $item['date_time'] }}</td>
+                        <td> {{ $item['temp'] }} &#8457</td>
+                        <td> {{ $item['feels_like'] }} &#8457</td>
+                        <td> {{ $item['weather'] }} ({{ $item['description'] }})</td>
+                        <td> {{ $item['wind_speed'] }}</td>
+                        <td> {{ $item['wind_direction'] }} degrees</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         @endforeach
     @endif
 </div>
