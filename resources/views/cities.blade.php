@@ -2,10 +2,6 @@
 @section('content')
     <h3>Cities</h3>
 
-    @if(!empty($error))
-        <h4 style="color: red">{{ $error }}</h4>
-    @endif
-
     <table>
         <thead>
         <tr>
@@ -41,12 +37,11 @@
                     @endforeach
                     <td style='white-space: nowrap; width: 12%'>
                         <form action="{{ '/forecast/' . $city['city'] }}" method="get" class="form-group"
-                              style="float: left; padding: 5px;">
+                              style="padding: 5px;">
                             <input type="hidden" name="city" value="{{ $city['city'] }}">
                             <button type="submit" value="Get Forecast" class="btn btn-primary">Get Forecast</button>
                         </form>
-                        <form action="/cities/delete" method="post" class="form-group"
-                              style="float: right; padding: 5px;">
+                        <form action="/cities/delete" method="post" class="form-group" style="padding: 5px;">
                             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                             <input type="hidden" name="city" value="{{ $city['city'] }}">
                             <button type="submit" value="Delete" class="btn btn-primary">Delete City</button>

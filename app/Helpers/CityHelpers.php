@@ -9,10 +9,10 @@ class CityHelpers
         foreach ($cities as $city) {
             $returnCities[] = [
                 'city'      => $city['name'] ?? $city['city'],
-                'latitude'  => $city['lat'] ?? $city['latitude'],
-                'longitude' => $city['lon'] ?? $city['longitude'],
                 'country'   => $city['country'],
                 'state'     => $city['state'],
+                'latitude'  => $city['lat'] ?? $city['latitude'],
+                'longitude' => $city['lon'] ?? $city['longitude'],
             ];
         }
 

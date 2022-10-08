@@ -9,6 +9,13 @@
 </head>
 <body>
 @include('menu')
+
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://www.myclientshare.com/hubfs/CS-Logo-FULL_Green.svg" width="400"></a></p>
+
+@if(!empty($error))
+    <h4 style="color: red">{{ $error }}</h4>
+@endif
+
 @yield('content')
 </body>
 </html>

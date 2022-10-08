@@ -4,7 +4,8 @@
 
     Menu::macro('main', function () {
         return Menu::new()
-            ->add(Link::to('/cities', 'Home')->addClass('active'))
+            ->add(Link::to('/', 'Home')->addClass('active'))
+            ->add(Link::to('/cities', 'Cities'))
             ->add(Link::to('/cities/find', 'Search City'))
             ->add(Link::to('/forecast', 'Forecasts'))
             ->setActiveFromRequest();
