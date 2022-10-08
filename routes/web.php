@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Cities\CitiesController;
+use App\Http\Controllers\Forecasts\Forecast5DayController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('', function () { return view('welcome'); });
-
 Route::prefix('cities')->group(function () {
     Route::get('', [CitiesController::class, 'get']);
     Route::get('add', [CitiesController::class, 'search']);
@@ -23,6 +23,5 @@ Route::prefix('cities')->group(function () {
     Route::post('search', [CitiesController::class, 'search']);
     Route::post('store', [CitiesController::class, 'store']);
 });
-
-//Route::get('cities', function () { return app()->make(CitiesController::class)->get(); });
+Route::get('forecast/{city?}', [Forecast5DayController::class, 'get5DayForecast']);
 Route::get('test', function () { return view('test'); });

@@ -22,7 +22,7 @@ class CitiesController extends Controller
         ]);
     }
 
-    public function get(?string $cityName = null, GetCitiesInterface $service)
+    public function get(GetCitiesInterface $service, ?string $cityName = null)
     {
         return view('cities', ['cities' => $service->get($cityName)]);
     }

@@ -43,13 +43,24 @@
                     </td>
                 </form>
             @else
-                @foreach($city as $field)
-                    <td>{{ $field }}</td>
+                @foreach($city as $item)
+                    <td>{{ $item }}</td>
                 @endforeach
+                <form action="{{ 'forecast/' . $city['city'] }}" method="get" class="form-group" style="width:70%;">
+                    <td>
+                        <input type="hidden" name="city" value="{{ $city['city'] }}">
+                        <button type="submit" value="Get Forecast" class="btn btn-primary">Get Forecast</button>
+                    </td>
+                </form>
             @endif
         </tr>
     @endforeach
     </tbody>
 </table>
+
+<br>
+<form action="forecast" method="get" class="form-group" style="width:70%;">
+    <button type="submit" value="Get Forecast" class="btn btn-primary">Get All Forecasts</button>
+</form>
 </body>
 </html>
