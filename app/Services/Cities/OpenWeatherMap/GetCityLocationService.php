@@ -16,7 +16,7 @@ class GetCityLocationService implements GetCityLocationInterface
      *
      * @return array|string
      */
-    public function get(string $cityName, int $limit = 5)
+    public function get(string $cityName, int $limit = 23)
     {
         $response = $this->searchCities($cityName, $limit);
         return ApiHelpers::isSuccessCode($response->status())

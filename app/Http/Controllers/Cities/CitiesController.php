@@ -12,12 +12,10 @@ use Illuminate\Http\Request;
 
 class CitiesController extends Controller
 {
-    // TODO: Create views to return instead of Services
-
     public function search(Request $request, GetCityLocationInterface $service)
     {
         return view('cities', [
-            'cities' => $service->get($request->input('city_name'), $request->input('limit') ?: 5),
+            'cities' => $service->get($request->input('city_name'), $request->input('limit') ?: 23),
             'add'    => true,
         ]);
     }
@@ -38,8 +36,17 @@ class CitiesController extends Controller
         return view('cities', $data);
     }
 
-    public function delete(string $cityName, DeleteCityInterface $service)
+    public function delete(Request $request, DeleteCityInterface $service, GetCitiesInterface $getService)
     {
-        return $service->delete($cityName);
+        if (!($city = $request->input('city'))) {
+            $data=['error' => 'Missing city parameter'];
+        }
+
+        if (is_string($deleted = $service->delete($city))) {
+            $data['error'] = $deleted;
+        }
+
+        $data['cities'] = $getService->get();
+        return view('cities', $data);
     }
 }

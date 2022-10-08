@@ -7,9 +7,9 @@
             <label class="form-group">City Name:
                 <input type="text" class="form-control" placeholder="City Name" name="city_name">
             </label>
-            <label class="form-group">Limit:
-                <input type="text" value="5" class="form-control" placeholder="5" name="limit">
-            </label>
+{{--            <label class="form-group">Limit:--}}
+{{--                <input type="text" class="form-control" placeholder="5" name="limit">--}}
+{{--            </label>--}}
             <button type="submit" class="btn btn-primary">Search</button>
         </form>
     </div>

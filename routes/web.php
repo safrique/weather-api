@@ -20,6 +20,7 @@ Route::prefix('cities')->group(function () {
     Route::get('', [CitiesController::class, 'get']);
     Route::get('add', [CitiesController::class, 'search']);
     Route::get('find', function () { return view('find_city'); });
+    Route::post('delete', [CitiesController::class, 'delete']);
     Route::post('search', [CitiesController::class, 'search']);
     Route::post('store', [CitiesController::class, 'store']);
 });

@@ -39,21 +39,29 @@
                     @foreach($city as $item)
                         <td>{{ $item }}</td>
                     @endforeach
-                    <form action="{{ '/forecast/' . $city['city'] }}" method="get" class="form-group"
-                          style="width:70%;">
-                        <td>
+                    <td style='white-space: nowrap; width: 12%'>
+                        <form action="{{ '/forecast/' . $city['city'] }}" method="get" class="form-group"
+                              style="float: left; padding: 5px;">
                             <input type="hidden" name="city" value="{{ $city['city'] }}">
                             <button type="submit" value="Get Forecast" class="btn btn-primary">Get Forecast</button>
-                        </td>
-                    </form>
+                        </form>
+                        <form action="/cities/delete" method="post" class="form-group"
+                              style="float: right; padding: 5px;">
+                            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                            <input type="hidden" name="city" value="{{ $city['city'] }}">
+                            <button type="submit" value="Delete" class="btn btn-primary">Delete City</button>
+                        </form>
+                    </td>
                 @endif
             </tr>
         @endforeach
         </tbody>
     </table>
 
-    <br>
-    <form action="/forecast" method="get" class="form-group" style="width:70%;">
-        <button type="submit" value="Get Forecast" class="btn btn-primary">Get All Forecasts</button>
-    </form>
+    @if(empty($add))
+        <br>
+        <form action="/forecast" method="get" class="form-group" style="width:70%;">
+            <button type="submit" value="Get Forecast" class="btn btn-primary">Get All Forecasts</button>
+        </form>
+    @endif
 @endsection
