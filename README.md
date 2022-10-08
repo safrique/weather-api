@@ -7,7 +7,7 @@
 ### Instructions
 
 1. Fork the repository from https://github.com/safrique/weather-api.
-2. Contact me to get a copy of the .env file.
+2. Contact me to get a copy of the .env and .env.testing files these have not already been provided to you.
 3. Create a database on your local MySQL database setup and call it weather-api
 4. Create a user on this new database named root, and make the password the same as on the .env file. Alternatively 
    uou can use a user you've already set up on your local database, but remember to change the DB_USERNAME & 
