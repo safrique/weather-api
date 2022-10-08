@@ -14,16 +14,28 @@ class CitiesController extends Controller
 {
     // TODO: Create views to return instead of Services
 
-    public function search(string $cityName, int $limit = 5, GetCityLocationInterface $service)
+    public function search(Request $request, GetCityLocationInterface $service)
     {
-        return $service->get($cityName, $limit);
+        return view('cities', [
+            'cities' => $service->get($request->input('city_name'), $request->input('limit') ?: 5),
+            'add'    => true,
+        ]);
     }
 
-    public function get(?string $cityName = null, GetCitiesInterface $service) { return $service->get($cityName); }
-
-    public function store(Request $request, StoreCityService $service, City $city)
+    public function get(?string $cityName = null, GetCitiesInterface $service)
     {
-        return $service->store($request->only($city->getFillable()));
+        return view('cities', ['cities' => $service->get($cityName)]);
+    }
+
+    public function store(Request $request, StoreCityService $storeService, City $city, GetCitiesInterface $getService)
+    {
+        $stored = $storeService->store($request->only($city->getFillable()));
+        $data = ['cities' => $getService->get()];
+
+        if (is_string($stored)) {
+            $data['error'] = $stored;
+        }
+        return view('cities', $data);
     }
 
     public function delete(string $cityName, DeleteCityInterface $service)

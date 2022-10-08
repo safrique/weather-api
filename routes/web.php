@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Cities\CitiesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('', function () { return view('welcome'); });
+
+Route::prefix('cities')->group(function () {
+    Route::get('', [CitiesController::class, 'get']);
+    Route::get('add', [CitiesController::class, 'search']);
+    Route::get('find', function () { return view('find_city'); });
+    Route::post('search', [CitiesController::class, 'search']);
+    Route::post('store', [CitiesController::class, 'store']);
+});
+
+//Route::get('cities', function () { return app()->make(CitiesController::class)->get(); });
 Route::get('test', function () { return view('test'); });

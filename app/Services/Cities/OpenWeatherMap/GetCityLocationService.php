@@ -3,6 +3,7 @@
 namespace App\Services\Cities\OpenWeatherMap;
 
 use App\Helpers\ApiHelpers;
+use App\Helpers\CityHelpers;
 use App\Services\Cities\OpenWeatherMap\Interfaces\GetCityLocationInterface;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
@@ -19,7 +20,7 @@ class GetCityLocationService implements GetCityLocationInterface
     {
         $response = $this->searchCities($cityName, $limit);
         return ApiHelpers::isSuccessCode($response->status())
-            ? $this->getCityDetails($response->json())
+            ? CityHelpers::getCityDetails($response->json())
             : $response->body();
     }
 
@@ -27,20 +28,5 @@ class GetCityLocationService implements GetCityLocationInterface
     : Response {
         $url = config('open_weather.geocoding-endpoint') . "?q=$cityName&limit=$limit&appid=" . config('open_weather.key');
         return Http::get($url);
-    }
-
-    private function getCityDetails(array $cities)
-    : array {
-        foreach ($cities as $city) {
-            $returnCities[] = [
-                'name'      => $city['name'],
-                'latitude'  => $city['lat'],
-                'longitude' => $city['lon'],
-                'country'   => $city['country'],
-                'state'     => $city['state'],
-            ];
-        }
-
-        return $returnCities ?? [];
     }
 }

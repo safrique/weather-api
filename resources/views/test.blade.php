@@ -21,15 +21,15 @@
     //    //    $response = Http::get($url);
     //    $response = app()->make(\App\Services\Cities\GetCitiesService::class)->get('London');
 
-    //    $data = [
-    //        'city'      => 'London',
-    //        'country'   => 'GB',
-    //        'state'     => 'England',
-    //        'latitude'  => '51.5073219',
-    //        'longitude' => '-0.1276474',
-    //    ];
-    //    var_dump($data);
-    //    $response = app()->make(\App\Services\Cities\StoreCityService::class)->store($data);
+    $data = [
+        'city'      => 'London',
+        'country'   => 'GB',
+        'state'     => 'England',
+        'latitude'  => '51.5073219',
+        'longitude' => '-0.1276474',
+    ];
+    var_dump($data);
+    $response = app()->make(\App\Services\Cities\Interfaces\StoreCityInterface::class)->store($data);
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -39,7 +39,7 @@
     //    $response = app()->make(\App\Services\Cities\Interfaces\GetCityLocationInterface::class)->get('London');
     //    $response = app()->make(\App\Services\Cities\OpenWeatherMap\GetCityLocationService::class)->get('London');
 
-    $response = app()->make(\App\Services\Forecasts\OpenWeatherMap\Interfaces\Get5DayForecastInterface::class)->get();
+    //    $response = app()->make(\App\Services\Forecasts\OpenWeatherMap\Interfaces\Get5DayForecastInterface::class)->get();
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
