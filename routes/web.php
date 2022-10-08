@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('', function () { return view('welcome'); });
+Route::get('', function () { return view('cities'); });
 Route::prefix('cities')->group(function () {
     Route::get('', [CitiesController::class, 'get']);
     Route::get('add', [CitiesController::class, 'search']);

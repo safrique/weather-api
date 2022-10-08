@@ -8,6 +8,7 @@
     <title>Cities</title>
 </head>
 <body>
+@include('menu')
 @yield('content')
 </body>
 </html>
