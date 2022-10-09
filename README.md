@@ -42,6 +42,7 @@
    3. Forecasts: List the weather forecasts of all the cities on the database
 
 ### Console Commands
+
 From within the project directory, running the following command will return the forecast for all the cities on the 
 database:
 
@@ -52,3 +53,8 @@ the database, e.g.
     php artisan forecast:get-5-day --city=London
 
 ### Automated Tests
+
+In order to run automated tests, run the following console command:
+
+    php artisan test
+Some feature and unit tests have been added, but full coverage has not been completed yet.
