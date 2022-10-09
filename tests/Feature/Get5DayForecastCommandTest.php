@@ -14,7 +14,7 @@ class Get5DayForecastCommandTest extends TestCase
      */
     public function test_success_outcome()
     {
-        $command = Artisan::call('forecast:get-5-day --city=London --test=true');
+        $command = Artisan::call($this->getCommand('London'));
         $this->assertEquals(0, $command);
     }
 
@@ -25,7 +25,12 @@ class Get5DayForecastCommandTest extends TestCase
      */
     public function test_fail_outcome()
     {
-        $command = Artisan::call('forecast:get-5-day --city=SomeNonExistentCity --test=true');
+        $command = Artisan::call($this->getCommand('SomeNonExistentCity'));
         $this->assertEquals(1, $command);
+    }
+
+    private function getCommand(string $city)
+    : string {
+        return "forecast:get-5-day --city=$city --test=true";
     }
 }

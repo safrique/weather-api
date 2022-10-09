@@ -12,9 +12,14 @@ class Get5DayForecastTest extends TestCase
      *
      * @return void
      */
-    public function test_forecast()
+    public function test_forecast_interface()
     {
         $service = $this->app->make(Get5DayForecastInterface::class);
         $this->assertIsArray($service->get());
+    }
+
+    public function test_forecast_api(){
+        $response = $this->get('/forecast');
+        $response->assertStatus(200);
     }
 }
