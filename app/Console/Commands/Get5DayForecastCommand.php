@@ -12,7 +12,7 @@ class Get5DayForecastCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'forecast:get-5-day';
+    protected $signature = 'forecast:get-5-day {--city=}';
 
     private Get5DayForecastInterface $forecastService;
 
@@ -42,7 +42,7 @@ class Get5DayForecastCommand extends Command
     public function handle()
     : int
     {
-        if (is_string($forecasts = $this->forecastService->get())) {
+        if (is_string($forecasts = $this->forecastService->get($this->option('city')))) {
             echo $forecasts . '<br>';
             return 1;
         }

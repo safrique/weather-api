@@ -5,6 +5,7 @@ namespace App\Services\Forecasts\OpenWeatherMap;
 use App\Helpers\ApiHelpers;
 use App\Services\Cities\GetCitiesService;
 use App\Services\Forecasts\OpenWeatherMap\Interfaces\Get5DayForecastInterface;
+use Exception;
 use Illuminate\Support\Facades\Http;
 
 class Get5DayForecastService implements Get5DayForecastInterface
@@ -20,12 +21,20 @@ class Get5DayForecastService implements Get5DayForecastInterface
      */
     public function get(?string $cityName = null)
     {
-        if (!($cities = $this->getCitiesService->get($cityName))) {
-            return 'No city data found';
-        }
+        try {
+            if (!($cities = $this->getCitiesService->get($cityName))) {
+                return 'No city data found';
+            }
 
-        $forecast = $this->getForecast($cities);
-        return $this->cleanForecast($forecast);
+            if (is_string($cities)) {
+                throw new Exception($cities, 404);
+            }
+
+            $forecast = $this->getForecast($cities);
+            return $this->cleanForecast($forecast);
+        } catch (Exception $e) {
+            return 'Error getting 5 day forecast >>> ERROR: ' . $e->getMessage();
+        }
     }
 
     private function getForecast(array $cities)
@@ -50,7 +59,7 @@ class Get5DayForecastService implements Get5DayForecastInterface
                 'city'    => $forecast['city']['name'],
                 'country' => $forecast['city']['country'],
                 'sunrise' => $forecast['city']['sunrise'],
-                'sunset' => $forecast['city']['sunset'],
+                'sunset'  => $forecast['city']['sunset'],
             ];
 
             foreach ($forecast['list'] as $item) {

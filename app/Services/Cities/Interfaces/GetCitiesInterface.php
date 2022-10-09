@@ -4,6 +4,10 @@ namespace App\Services\Cities\Interfaces;
 
 interface GetCitiesInterface
 {
-    public function get(?string $city = null)
-    : array;
+    /**
+     * @param string|null $cityName
+     *
+     * @return array|string
+     */
+    public function get(?string $cityName = null);
 }

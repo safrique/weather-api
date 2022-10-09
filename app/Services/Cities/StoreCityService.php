@@ -27,7 +27,7 @@ class StoreCityService implements StoreCityInterface
         try {
             return is_string($validate = $this->validate($data)) ? $validate : $this->save($validate);
         } catch (Exception $e) {
-            return $e->getMessage();
+            return 'Error storing city >>> ERROR: ' . $e->getMessage();
         }
     }
 

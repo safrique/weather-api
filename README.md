@@ -42,5 +42,13 @@
    3. Forecasts: List the weather forecasts of all the cities on the database
 
 ### Console Commands
+From within the project directory, running the following command will return the forecast for all the cities on the 
+database:
+
+    php artisan forecast:get-5-day
+An optional parameter can be included in the command, which will return the forecast for that city only, if it's on 
+the database, e.g.
+
+    php artisan forecast:get-5-day --city=London
 
 ### Automated Tests

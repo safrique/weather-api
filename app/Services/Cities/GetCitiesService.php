@@ -8,11 +8,17 @@ use App\Services\Cities\Interfaces\GetCitiesInterface;
 
 class GetCitiesService implements GetCitiesInterface
 {
-    public function get(?string $city = null)
-    : array {
-        if ($city && ($city = City::where('city', $city)->first())) {
-            $cities[] = $city->toArray();
-            return CityHelpers::getCityDetails($cities);
+    /**
+     * @param string|null $cityName
+     *
+     * @return array|string
+     */
+    public function get(?string $cityName = null)
+    {
+        if ($cityName) {
+            return ($city = City::where('city', $cityName)->first())
+                ? CityHelpers::getCityDetails([$city->toArray()])
+                : "City '$cityName' not found";
         }
 
         return City::exists() ? CityHelpers::getCityDetails(City::all()->toArray()) : [];
