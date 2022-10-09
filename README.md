@@ -1,7 +1,7 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://www.myclientshare.com/hubfs/CS-Logo-FULL_Green.svg" width="400"></a></p>
 
 # Weather API
-## Clientshare take-hope coding task
+## Clientshare take-home coding task
 ### _Josef van Niekerk_
 
 ### Instructions
